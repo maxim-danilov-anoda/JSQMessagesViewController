@@ -59,10 +59,15 @@
 
 - (void)drawTextInRect:(CGRect)rect
 {
-    [super drawTextInRect:CGRectMake(CGRectGetMinX(rect) + self.textInsets.left,
-                                     CGRectGetMinY(rect) + self.textInsets.top,
-                                     CGRectGetWidth(rect) - self.textInsets.right,
-                                     CGRectGetHeight(rect) - self.textInsets.bottom)];
+    [super drawTextInRect:UIEdgeInsetsInsetRect(rect, self.textInsets)];
+}
+    
+- (CGSize)intrinsicContentSize
+{
+    CGSize size = [super intrinsicContentSize];
+    size.width  += self.textInsets.left + self.textInsets.right;
+    size.height += self.textInsets.top + self.textInsets.bottom;
+    return size;
 }
 
 @end
