@@ -459,7 +459,7 @@ JSQMessagesKeyboardControllerDelegate>
     }
 
     NSInteger item = MAX(MIN(indexPath.item, numberOfItems - 1), 0);
-    indexPath = [NSIndexPath indexPathForItem:item inSection:0];
+    indexPath = [NSIndexPath indexPathForItem:item inSection: indexPath.section];
 
     //  workaround for really long messages not scrolling
     //  if last message is too long, use scroll position bottom for better appearance, else use top
@@ -1054,7 +1054,7 @@ JSQMessagesKeyboardControllerDelegate>
 
 - (void)jsq_updateCollectionViewInsets
 {
-    [self jsq_setCollectionViewInsetsTopValue:self.topLayoutGuide.length + self.topContentAdditionalInset
+    [self jsq_setCollectionViewInsetsTopValue: self.topContentAdditionalInset
                                   bottomValue:CGRectGetMaxY(self.collectionView.frame) - CGRectGetMinY(self.inputToolbar.frame)];
 }
 
